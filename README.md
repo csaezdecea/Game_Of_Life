@@ -56,6 +56,9 @@ The simulation logic is implemented entirely in CUDA inside `cuda_kernels.cu`.
 
 ### Core Life Kernel (Conceptual)
 
+A minimal CUDA kernel implementing one step of Conway’s Game of Life on the GPU.
+Each thread processes a single cell, counts its 8 neighbors, and writes the new cell state to the next grid buffer. The rules (survival and birth) are applied directly in the device code.
+
 ```cpp
 __global__ void step_kernel(unsigned char* current, unsigned char* next,
                             int rows, int cols)
